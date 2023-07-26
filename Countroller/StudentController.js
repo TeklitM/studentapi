@@ -25,14 +25,15 @@ const studentUpdate = async (req,res) =>{
     const isUserExist = await Student.findOne({ id: req.body.id});
     if (isUserExist) {
        
-     isUserExist.firstName=req.body.firstName,
-     isUserExist.lastName = req.body.lastName,
-     isUserExist.dateOfBirth=req.body.dateOfBirth,
-     isUserExist.image=req.file.filename,
-   console.log(req.file.filename);
-
-deleteFile("uploads/",isUserExist.image);
-
+     isUserExist.firstName=req.body.firstName;
+     isUserExist.lastName = req.body.lastName;
+     isUserExist.dateOfBirth=req.body.dateOfBirth;
+     try{
+          isUserExist.image =req.file.filename;
+          deleteFile("uploads/",isUserExist.image);
+     }catch(err){
+      console.log(err);
+     }
       const Data = await Student.findOneAndUpdate({id: req.body.id},isUserExist);
        res.status(200).json({student:isUserExist , status:"SUCCESS",message:"Student updated successfully."});
     }
