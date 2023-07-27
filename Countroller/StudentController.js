@@ -81,7 +81,7 @@ const listAllStudents = async(req, res) =>{
       allStudents.push(
   new Student({
       id:data.id,
-      firstName: data.lastName,
+      firstName: data.firstName,
       lastName: data.lastName,
       dateOfBirth:data.dateOfBirth,
       image:data.image
