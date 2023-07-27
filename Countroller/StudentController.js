@@ -29,8 +29,9 @@ const studentUpdate = async (req,res) =>{
      isUserExist.lastName = req.body.lastName;
      isUserExist.dateOfBirth=req.body.dateOfBirth;
      try{
+      const oldImage =isUserExist.image;
           isUserExist.image =req.file.filename;
-          deleteFile("uploads/",isUserExist.image);
+          deleteFile("uploads/",oldImage);
      }catch(err){
       console.log(err);
      }
